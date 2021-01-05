@@ -1,3 +1,7 @@
+## Challenge finalized
+
+> Felipe Rocha Oliveira
+
 <img alt="GoStack" src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/header-desafios-new.png" style="width: 100%;"/>
 
 <h3 align="center">
