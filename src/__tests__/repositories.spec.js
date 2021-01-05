@@ -12,9 +12,9 @@ describe("Repositories", () => {
         techs: ["Node", "Express", "TypeScript"]
       });
 
-    expect(isUuid(response.body.id)).toBe(true);
+    expect(isUuid(response.body[0].id)).toBe(true);
 
-    expect(response.body).toMatchObject({
+    expect(response.body[0]).toMatchObject({
       url: "https://github.com/Rocketseat/umbriel",
       title: "Umbriel",
       techs: ["Node", "Express", "TypeScript"],
@@ -36,7 +36,7 @@ describe("Repositories", () => {
     expect(response.body).toEqual(
       expect.arrayContaining([
         {
-          id: repository.body.id,
+          id: repository.body[0].id,
           url: "https://github.com/Rocketseat/umbriel",
           title: "Umbriel",
           techs: ["Node", "Express", "TypeScript"],
@@ -56,16 +56,16 @@ describe("Repositories", () => {
       });
 
     const response = await request(app)
-      .put(`/repositories/${repository.body.id}`)
+      .put(`/repositories/${repository.body[0].id}`)
       .send({
         url: "https://github.com/Rocketseat/unform",
         title: "Unform",
         techs: ["React", "ReactNative", "TypeScript", "ContextApi"]
       });
 
-    expect(isUuid(response.body.id)).toBe(true);
+    expect(isUuid(response.body[0].id)).toBe(true);
 
-    expect(response.body).toMatchObject({
+    expect(response.body[0]).toMatchObject({
       url: "https://github.com/Rocketseat/unform",
       title: "Unform",
       techs: ["React", "ReactNative", "TypeScript", "ContextApi"]
@@ -86,15 +86,15 @@ describe("Repositories", () => {
       });
 
     await request(app)
-    .post(`/repositories/${repository.body.id}/like`);
+    .post(`/repositories/${repository.body[0].id}/like`);
 
     const response = await request(app)
-      .put(`/repositories/${repository.body.id}`)
+      .put(`/repositories/${repository.body[0].id}`)
       .send({
         likes: 15
       });
 
-    expect(response.body).toMatchObject({
+    expect(response.body[0]).toMatchObject({
       likes: 1
     });
   });
@@ -108,7 +108,7 @@ describe("Repositories", () => {
         techs: ["Node", "Express", "TypeScript"]
       });
 
-    await request(app).delete(`/repositories/${response.body.id}`).expect(204);
+    await request(app).delete(`/repositories/${response.body[0].id}`).expect(204);
 
     const repositories = await request(app).get("/repositories");
 
