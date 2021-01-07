@@ -53,7 +53,9 @@ app.post('/repositories', /*validateData*/ (req, res) => {
   const { title, url, techs } = req.body
   repositories.push({id: uuid(), title, url, techs, likes: 0})
 
-  return res.status(201).json(repositories)
+  const lastIndex = repositories.length - 1
+
+  return res.status(201).json(repositories[lastIndex])
 })
 
 app.put('/repositories/:id', validateRepositoryId, /*validateData*/ (req, res) => {
@@ -68,7 +70,7 @@ app.put('/repositories/:id', validateRepositoryId, /*validateData*/ (req, res) =
     likes: repositories[index].likes
   }
 
-  return res.status(200).json(repositories)
+  return res.status(200).json(repositories[index])
 })
 
 app.delete('/repositories/:id', validateRepositoryId, (req, res) => {
